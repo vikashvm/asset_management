@@ -17,4 +17,5 @@ class Product
   has_many :inventories, dependent: :restrict
   has_many :allotments, dependent: :restrict
   has_many :purchases, dependent: :restrict
+  
 end

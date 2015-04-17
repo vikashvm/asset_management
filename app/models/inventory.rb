@@ -16,4 +16,5 @@ class Inventory
   ############RELATION##########
   belongs_to :product
   has_many :allotments, dependent: :restrict, foreign_key: :serial_no, primary_key: :serial_no
+
 end

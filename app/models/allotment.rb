@@ -1,6 +1,8 @@
 class Allotment
   include Mongoid::Document
 
+  after_create :set_status
+
   ###########FIELDS#############
   field :product_id
   field :xid
@@ -19,5 +21,12 @@ class Allotment
   belongs_to :product
   belongs_to :inventory, foreign_key: :serial_no, primary_key: :serial_no
 
+  def set_status
+  	status = case transaction_type
+  	when "Issue" then "Not Available"
+  	when "Return" then "Available"
+  	else "Retired"
+  	inventory.update_attributes(status: status)
+  end
 
 end
