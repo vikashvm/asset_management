@@ -1,0 +1,1 @@
+json.extract! @product, :id, :brand, :equipment, :model, :capacity
