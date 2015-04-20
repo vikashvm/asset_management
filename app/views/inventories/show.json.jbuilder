@@ -1,1 +1,1 @@
-json.extract! @inventory, :id, :serial_no, :product_id, :serial_no
+json.extract! @inventory, :id, :serial_no, :status, :date, :xid, :prod

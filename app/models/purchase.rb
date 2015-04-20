@@ -22,7 +22,7 @@ class Purchase
   belongs_to :product
 
   def validate_serial_no
-  	errors.add(:quantity, 'Quantity cannot be more than 1 for a serial number') if serial_no and quantity != 1
+  	errors.add(:quantity, 'cannot be more than 1 for a serial number') if serial_no and quantity != 1
   end
 
 end

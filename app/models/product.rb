@@ -6,6 +6,7 @@ class Product
   field :equipment
   field :model
   field :capacity
+  field :description
 
 
   ########VALIDATIONS###############
@@ -15,7 +16,6 @@ class Product
 
   ############RELATION##########
   has_many :inventories, dependent: :restrict
-  has_many :allotments, dependent: :restrict
   has_many :purchases, dependent: :restrict
   
 end
