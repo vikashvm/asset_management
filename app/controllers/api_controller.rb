@@ -1,24 +1,24 @@
 class ApiController < ApplicationController
 
-	# GET /available
+	# GET /api/available
 	def get_available_inventory
 		@inventories = Inventory.available
 		render 'inventories.json.jbuilder'#, status: :created, location: @inventories
 	end
 
-	# GET /issued
+	# GET /api/issued
 	def get_issued_inventory
 		@inventories = Inventory.issued
 		render 'inventories.json.jbuilder'#, status: :created, location: @inventories
 	end
 
-	# GET /retired
+	# GET /api/retired
 	def get_retired_inventory
 		@inventories = Inventory.retired
 		render 'inventories.json.jbuilder'#, status: :created, location: @inventories
 	end
 
-	# POST /issue, params: serial_no, xid
+	# POST /api/issue, params: serial_no, xid
 	def issue_inventory
 		@inventory = Inventory.find_by status: 'Available', serial_no: params[:serial_no]
 		if @inventory and @inventory.update_attributes(xid: params[:xid], status: 'Issued')
@@ -28,7 +28,7 @@ class ApiController < ApplicationController
 		end
 	end
 
-	# POST /return, params: serial_no
+	# POST /api/return, params: serial_no
 	def return_inventory
 		@inventory = Inventory.find_by status: 'Issued', serial_no: params[:serial_no]
 		if @inventory and @inventory.update_attributes(xid: nil, status: 'Available')
@@ -38,7 +38,7 @@ class ApiController < ApplicationController
 		end
 	end
 
-	# POST /retire, params: serial_no
+	# POST /api/retire, params: serial_no
 	def retire_inventory
 		@inventory = Inventory.find_by status: 'Available', serial_no: params[:serial_no]
 		if @inventory and @inventory.update_attributes(xid: nil, status: 'Retired')
