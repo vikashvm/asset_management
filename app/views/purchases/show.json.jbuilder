@@ -1,1 +1,1 @@
-json.extract! @purchase, :id, :created_at, :updated_at
+json.extract! @purchase, :id, :prod, :quantity, :cost, :purchase_date, :expiry_date, :vendor, :serial_no

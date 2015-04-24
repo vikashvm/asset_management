@@ -19,7 +19,7 @@ class Inventory
   validates :serial_no, presence: true, uniqueness: true
   validates :status, presence: true, inclusion: { in: INVENTORY_STATUSES }
   validates :product_id, presence: true
-  validates :xid, presence: true, if: Proc.new {|x| x.status == 'NotAvailable'}
+  validates :xid, presence: true, if: Proc.new {|x| x.status == 'Issued'}
   validates :date, presence: true, unless: Proc.new {|x| x.xid.nil? }
   validate :validate_employee
 
@@ -35,7 +35,7 @@ class Inventory
 
   ############SCOPES############
   scope :available, ->{ where(status: "Available") }
-  scope :not_available, ->{ where(status: "NotAvailable") }
+  scope :issued, ->{ where(status: "Issued") }
   scope :retired, ->{ where(status: "Retired") }
 
 end

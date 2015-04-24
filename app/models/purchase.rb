@@ -9,6 +9,12 @@ class Purchase
   field :cost, type: Float
   field :vendor
   field :serial_no
+  field :prod
+
+  before_save do |doc|
+    prod_obj = Product.find(product_id)
+    doc.prod = "#{prod_obj.brand} #{prod_obj.equipment} #{prod_obj.model} #{prod_obj.capacity}".rstrip
+  end
 
 
   ########VALIDATIONS###############
