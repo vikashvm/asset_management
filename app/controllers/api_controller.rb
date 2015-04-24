@@ -21,12 +21,9 @@ class ApiController < ApplicationController
 	# POST /issue, params: serial_no, xid
 	def issue_inventory
 		@inventory = Inventory.find_by status: 'Available', serial_no: params[:serial_no]
-		logger.info @inventory.inspect
-		puts @inventory.inspect
 		if @inventory and @inventory.update_attributes(xid: params[:xid], status: 'Issued')
 			render 'inventory.json.jbuilder'
 		else
-			logger.info @inventory.errors.messages
 			render json: {message: "Sorry, It seems like we have encountered an error"}, status: :unprocessable_entity
 		end
 	end

@@ -15,6 +15,11 @@ class Inventory
   end
 
 
+  ###############INDEX######################
+
+  index({status: 1, serial_no: 1}, {unique: true})
+
+
   ########VALIDATIONS###############
   validates :serial_no, presence: true, uniqueness: true
   validates :status, presence: true, inclusion: { in: INVENTORY_STATUSES }
