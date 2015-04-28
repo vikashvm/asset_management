@@ -7,9 +7,11 @@ class ApplicationController < ActionController::Base
 
   def set_access_control_headers
     headers['Access-Control-Allow-Origin'] = "*"
-    #headers['Access-Control-Allow-Credentials'] = "true"
-    headers['Access-Control-Request-Method'] = %w{GET POST PUT DELETE OPTIONS}.join(",")
-    headers['Access-Control-Allow-Headers']= "Authorization"
+    # headers['Access-Control-Allow-Credentials'] = "true"
+    # headers['Access-Control-Request-Method'] = %w{GET POST PUT DELETE OPTIONS HEAD}.join(", ")
+    headers['Access-Control-Allow-Methods'] = 'GET, POST, PATCH, PUT, DELETE, OPTIONS, HEAD'
+    headers['Access-Control-Allow-Headers'] = '*,Authorization,x-requested-with,Content-Type,If-Modified-Since,If-None-Match'
+    headers['Access-Control-Max-Age'] = '86400'
   end
 
   # rescue_from Exception do |exception|
