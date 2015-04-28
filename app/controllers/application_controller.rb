@@ -12,9 +12,9 @@ class ApplicationController < ActionController::Base
     headers['Access-Control-Allow-Headers']= "Authorization"
   end
 
-  rescue_from Exception do |exception|
-    render json: {message: exception.message, success: false}, status: :internal_server_error
-  end
+  # rescue_from Exception do |exception|
+  #   render json: {message: exception.message, success: false}, status: :internal_server_error
+  # end
 
 
 end

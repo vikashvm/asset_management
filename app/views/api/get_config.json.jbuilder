@@ -1,0 +1,4 @@
+json.brands XEBIA_BRANDS
+json.equipments XEBIA_EQUIPMENTS
+json.transactions TRANSACTION_TYPES
+json.statuses INVENTORY_STATUSES

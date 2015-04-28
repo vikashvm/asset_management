@@ -30,5 +30,6 @@ module AssetManagement
     # config.i18n.default_locale = :de
 	Mongoid.logger.level = Logger::DEBUG
     Moped.logger.level = Logger::DEBUG
+    config.middleware.use "RequestFormatter"
   end
 end

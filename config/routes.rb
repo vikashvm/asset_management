@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   	post '/issue', to: 'api#issue_inventory'
   	post '/return', to: 'api#return_inventory'
   	post '/retire', to: 'api#retire_inventory'
+    get '/config', to: 'api#get_config'
   end
   #resources :allotments, except: [:edit, :update, :destroy]
 end

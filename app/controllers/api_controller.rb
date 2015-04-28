@@ -12,6 +12,11 @@ class ApiController < ApplicationController
 		render 'inventories.json.jbuilder'#, status: :created, location: @inventories
 	end
 
+	# GET /api/config
+	def get_config
+		logger.info "hellooooo"
+	end
+
 	# GET /api/retired
 	def get_retired_inventory
 		@inventories = Inventory.retired
