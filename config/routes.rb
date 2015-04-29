@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   resources :purchases, :inventories, :products, :employees
 
+  match '/products/:id', to: 'products#update', via: [:options]
+  match '/inventories/:id', to: 'inventories#update', via: [:options]
+  match '/purchases/:id', to: 'purchases#update', via: [:options]
+  match '/employees/:id', to: 'employees#update', via: [:options]
+
   scope '/api' do
   	get '/available', to: 'api#get_available_inventory'
   	get '/issued', to: 'api#get_issued_inventory'
