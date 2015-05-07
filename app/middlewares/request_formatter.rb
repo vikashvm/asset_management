@@ -5,7 +5,7 @@ class RequestFormatter
 
   def call(env)
     request = Rack::Request.new(env)
-    request.env['HTTP_ACCEPT'] = 'application/json'
+    request.env['HTTP_ACCEPT'] = 'application/json' unless env["REQUEST_PATH"] == "/"
     response = @app.call(env)
   end
 end

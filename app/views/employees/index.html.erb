@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%#= notice %></p>
 
 <h1>Listing Employees</h1>
 
@@ -10,16 +10,51 @@
   </thead>
 
   <tbody>
-    <% @employees.each do |employee| %>
+    <%# @employees.each do |employee| %>
       <tr>
-        <td><%= link_to 'Show', employee %></td>
-        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%#= link_to 'Show', employee %></td>
+        <td><%#= link_to 'Edit', edit_employee_path(employee) %></td>
+        <td><%#= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+    <%# end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Employee', new_employee_path %>
+<%#= link_to 'New Employee', new_employee_path %> -->
+<h2>Asset Management</h2>
+<div id="content"></div>
+<script type="text/jsx">
+  var Employee = React.createClass({
+    getInitialState: function() {
+      return {
+        employees: []
+      };
+    },
+
+    componentDidMount: function() {
+      $.get(this.props.source, function(result) {
+        if (this.isMounted()) {
+          this.setState({
+            employees: result
+          });
+        }
+      }.bind(this));
+    },
+
+    render: function() {
+      var items = this.state.employees.map(function(employee, i) {
+        return (<span key={employee["_id"]}>{employee.name}</span>);
+      });
+      return (
+        <div>
+          <h3>Employees</h3>
+          {items}
+        </div>
+      );
+    }
+  });
+
+  React.render(<Employee source="http://localhost:8080/employees" />, document.getElementById('content'));
+</script>
